@@ -1,0 +1,23 @@
+id = "swede"
+name = "Swede"
+description = "Syntax highlighting for the Swede graph-first recipe language"
+version = "0.1.0"
+schema_version = 1
+authors = ["Teddy Cleveland"]
+repository = "https://github.com/spiicy-sauce/swede"
+
+# The tree-sitter grammar lives in the `tree-sitter-swede/` subdirectory of this
+# monorepo. Zed fetches the repo at (repository, commit) and compiles the
+# grammar found under `path`.
+#
+# `commit` must be a full, immutable SHA that is pushed to the remote: Zed
+# caches the compiled grammar keyed by this value, so a branch name like `main`
+# would never pick up later pushes. Bump it with close-grammar-drift.sh whenever
+# the grammar changes, and push first so the SHA is fetchable.
+#
+# (If your Zed predates monorepo grammar `path` support, point `repository` at a
+# standalone tree-sitter-swede repo and drop the `path` line.)
+[grammars.swede]
+repository = "https://github.com/spiicy-sauce/swede"
+commit = "cdf3c69df704196635b7d71202ce343214f28c9a"
+path = "tree-sitter-swede"

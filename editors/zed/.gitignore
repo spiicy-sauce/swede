@@ -1,0 +1,7 @@
+target/
+*.wasm
+
+# Zed fetches and compiles the tree-sitter grammar into grammars/ on dev
+# install, pinned by [grammars.swede] commit in extension.toml. It is build
+# output, not source — never track it.
+grammars/
