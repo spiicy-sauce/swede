@@ -1,0 +1,9 @@
+# The Zed extension is a standalone wasm crate, built by Zed's own toolchain.
+# It must NOT inherit the workspace's pinned channel (../../rust-toolchain.toml,
+# which exists only for rustfmt determinism): that pin can leak into Zed's
+# extension build, where the pinned toolchain has no wasm target, and the
+# install fails with "failed to compile Rust extension". Pin stable here and
+# declare the wasm target so rustup installs it on demand.
+[toolchain]
+channel = "stable"
+targets = ["wasm32-wasip1"]
