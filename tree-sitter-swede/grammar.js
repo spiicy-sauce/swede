@@ -60,9 +60,15 @@ module.exports = grammar({
     comment: $ => token(/\/\/[^\r\n]*/),
 
     // ── Metadata ─────────────────────────────────────────────────────
-    // A whole `:key value` line captured as one token (value verbatim to EOL).
-    meta_line: $ => $.meta_text,
-    meta_text: $ => token(/:[a-z][a-z0-9_]*([ \t][^\r\n]*)?/),
+    // `:key value` — the `:` and key are structured (so they highlight
+    // distinctly), while the value is a single verbatim-to-EOL token, so a `//`
+    // inside a source URL is safe and comments are not scanned there.
+    meta_line: $ => seq(
+      ':',
+      field('key', $.identifier),
+      optional(field('value', $.meta_value)),
+    ),
+    meta_value: $ => token(/[^\r\n]+/),
 
     // ── Basis ────────────────────────────────────────────────────────
     basis_decl: $ => seq(

@@ -184,18 +184,10 @@ fn lower_menu_entry(ctx: &Ctx, n: Node) -> MenuEntry {
 }
 
 fn lower_meta(ctx: &Ctx, n: Node) -> Meta {
-    // text is like ":serves 3-4"
-    let raw = ctx.text(n);
-    let body = raw.strip_prefix(':').unwrap_or(&raw);
-    let (key, value) = match body.split_once(|c: char| c.is_whitespace()) {
-        Some((k, v)) => (k.to_string(), v.trim().to_string()),
-        None => (body.trim().to_string(), String::new()),
-    };
-    Meta {
-        key,
-        value,
-        span: ctx.span(n),
-    }
+    // `:key value` — key and value are now distinct fields.
+    let key = ctx.field(n, "key").map(|x| ctx.text(x)).unwrap_or_default();
+    let value = ctx.field(n, "value").map(|x| ctx.text(x).trim().to_string()).unwrap_or_default();
+    Meta { key, value, span: ctx.span(n) }
 }
 
 fn lower_basis(ctx: &Ctx, n: Node) -> Basis {

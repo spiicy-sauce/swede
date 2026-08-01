@@ -98,14 +98,43 @@
       }
     },
     "meta_line": {
-      "type": "SYMBOL",
-      "name": "meta_text"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "FIELD",
+          "name": "key",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "value",
+              "content": {
+                "type": "SYMBOL",
+                "name": "meta_value"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
     },
-    "meta_text": {
+    "meta_value": {
       "type": "TOKEN",
       "content": {
         "type": "PATTERN",
-        "value": ":[a-z][a-z0-9_]*([ \\t][^\\r\\n]*)?"
+        "value": "[^\\r\\n]+"
       }
     },
     "basis_decl": {

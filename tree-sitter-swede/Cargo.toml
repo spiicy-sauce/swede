@@ -8,6 +8,7 @@ build = "bindings/rust/build.rs"
 include = [
     "bindings/rust/*",
     "grammar.js",
+    "queries/*",
     "src/*.c",
     "src/*.h",
     "src/tree_sitter/*",
