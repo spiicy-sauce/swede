@@ -28,6 +28,16 @@ enum Cmd {
     },
     /// Schedule a recipe or menu onto a single-cook timeline.
     Schedule { file: PathBuf },
+    /// Canonically format a file (align `=` columns).
+    Fmt {
+        file: PathBuf,
+        /// Write the result back to the file instead of stdout.
+        #[arg(long)]
+        write: bool,
+        /// Exit non-zero if the file is not already formatted (no writes).
+        #[arg(long)]
+        check: bool,
+    },
     /// Dump the parsed AST as JSON (debugging).
     Parse { file: PathBuf },
 }
@@ -46,6 +56,7 @@ fn main() -> ExitCode {
         Cmd::Validate { file, json } => validate(file, json),
         Cmd::Render { file, format } => render(file, format),
         Cmd::Schedule { file } => schedule(file),
+        Cmd::Fmt { file, write, check } => fmt(file, write, check),
         Cmd::Parse { file } => parse(file),
     }
 }
@@ -130,6 +141,33 @@ fn schedule(file: PathBuf) -> ExitCode {
             ExitCode::FAILURE
         }
     }
+}
+
+fn fmt(file: PathBuf, write: bool, check: bool) -> ExitCode {
+    let src = read(&file);
+    let formatted = swede_fmt::format_source(&src);
+    let changed = formatted != src;
+    if check {
+        if changed {
+            eprintln!("{}: not formatted", file.display());
+            return ExitCode::FAILURE;
+        }
+        return ExitCode::SUCCESS;
+    }
+    if write {
+        if changed {
+            if let Err(e) = std::fs::write(&file, &formatted) {
+                eprintln!("error: cannot write {}: {e}", file.display());
+                return ExitCode::FAILURE;
+            }
+            println!("formatted {}", file.display());
+        } else {
+            println!("{} already formatted", file.display());
+        }
+    } else {
+        print!("{formatted}");
+    }
+    ExitCode::SUCCESS
 }
 
 fn parse(file: PathBuf) -> ExitCode {

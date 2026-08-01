@@ -16,9 +16,10 @@ crate-per-concern).
 | `swede-semantics` | Static validation (coded diagnostics), basis resolution, shared graph model |
 | `swede-render` | Table projections: Markdown flow table + monospace grid |
 | `swede-schedule` | Single-cook scheduler stab + timeline; menu scheduling |
-| `swede-analysis` | Editor analysis: position mapping, LSP diagnostics, symbols, go-to-definition |
+| `swede-fmt` | Canonical formatter: `=`-column alignment via disjoint span edits |
+| `swede-analysis` | Editor analysis: position mapping, LSP diagnostics, symbols, go-to-definition, formatting |
 | `swede-lsp` | `swede-lsp` language server (tower-lsp) over `swede-analysis` |
-| `swede-cli` | `swede` binary: `validate` / `render` / `schedule` / `parse` |
+| `swede-cli` | `swede` binary: `validate` / `render` / `schedule` / `fmt` / `parse` |
 
 Editor integration lives in [`editors/zed`](editors/zed) (tree-sitter grammar,
 highlight/outline/bracket queries, and a Zed extension that launches

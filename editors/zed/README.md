@@ -13,6 +13,13 @@ files.
 - **Document outline** of the recipe/menu name, its bases, and its named nodes.
 - **Go to definition** — jump from a node reference to the binding that
   produces it.
+- **Formatting** — `swede-lsp` aligns the `=` columns; run **`editor: Format`**
+  or enable format-on-save for Swede in your Zed settings:
+
+  ```json
+  "languages": { "Swede": { "format_on_save": "on" } }
+  ```
+
 - **Bracket matching / autoclose** for `[...]` and `(...)`.
 
 ## Setup

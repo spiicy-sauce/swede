@@ -39,6 +39,7 @@ impl LanguageServer for Backend {
                 )),
                 document_symbol_provider: Some(OneOf::Left(true)),
                 definition_provider: Some(OneOf::Left(true)),
+                document_formatting_provider: Some(OneOf::Left(true)),
                 ..Default::default()
             },
             server_info: Some(ServerInfo {
@@ -87,6 +88,14 @@ impl LanguageServer for Backend {
     ) -> tower_lsp::jsonrpc::Result<Option<DocumentSymbolResponse>> {
         let text = self.documents.lock().await.get(&params.text_document.uri).cloned();
         Ok(text.map(|text| DocumentSymbolResponse::Nested(analysis::document_symbols(&text))))
+    }
+
+    async fn formatting(
+        &self,
+        params: DocumentFormattingParams,
+    ) -> tower_lsp::jsonrpc::Result<Option<Vec<TextEdit>>> {
+        let text = self.documents.lock().await.get(&params.text_document.uri).cloned();
+        Ok(text.map(|text| analysis::formatting(&text)))
     }
 
     async fn goto_definition(

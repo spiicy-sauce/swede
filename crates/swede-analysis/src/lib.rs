@@ -4,7 +4,7 @@
 
 use lsp_types::{
     Diagnostic, DiagnosticSeverity, DocumentSymbol, GotoDefinitionResponse, Location,
-    NumberOrString, Position, Range, SymbolKind, Url,
+    NumberOrString, Position, Range, SymbolKind, TextEdit, Url,
 };
 use swede_semantics::{validate_source, Severity};
 use swede_syntax::*;
@@ -78,6 +78,20 @@ pub fn diagnostics(text: &str) -> Vec<Diagnostic> {
             ..Default::default()
         })
         .collect()
+}
+
+/// A single whole-document edit that replaces the file with its formatted form.
+/// Empty when the file is already formatted (or has syntax errors).
+pub fn formatting(text: &str) -> Vec<TextEdit> {
+    let formatted = swede_fmt::format_source(text);
+    if formatted == text {
+        return Vec::new();
+    }
+    let mapper = PositionMapper::new(text);
+    vec![TextEdit {
+        range: Range { start: Position { line: 0, character: 0 }, end: mapper.position(text.len()) },
+        new_text: formatted,
+    }]
 }
 
 fn verb_of(e: &Expr) -> String {

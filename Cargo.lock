@@ -674,6 +674,7 @@ name = "swede-analysis"
 version = "0.2.0"
 dependencies = [
  "lsp-types",
+ "swede-fmt",
  "swede-semantics",
  "swede-syntax",
 ]
@@ -684,9 +685,17 @@ version = "0.2.0"
 dependencies = [
  "clap",
  "serde_json",
+ "swede-fmt",
  "swede-render",
  "swede-schedule",
  "swede-semantics",
+ "swede-syntax",
+]
+
+[[package]]
+name = "swede-fmt"
+version = "0.2.0"
+dependencies = [
  "swede-syntax",
 ]
 

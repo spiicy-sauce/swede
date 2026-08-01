@@ -6,6 +6,7 @@ members = [
     "crates/swede-semantics",
     "crates/swede-render",
     "crates/swede-schedule",
+    "crates/swede-fmt",
     "crates/swede-analysis",
     "crates/swede-lsp",
     "crates/swede-cli",
@@ -23,6 +24,7 @@ swede-syntax = { path = "crates/swede-syntax" }
 swede-semantics = { path = "crates/swede-semantics" }
 swede-render = { path = "crates/swede-render" }
 swede-schedule = { path = "crates/swede-schedule" }
+swede-fmt = { path = "crates/swede-fmt" }
 swede-analysis = { path = "crates/swede-analysis" }
 lsp-types = "0.94"
 serde = { version = "1", features = ["derive"] }
