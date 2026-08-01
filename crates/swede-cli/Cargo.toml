@@ -14,5 +14,6 @@ swede-semantics = { workspace = true }
 swede-render = { workspace = true }
 swede-schedule = { workspace = true }
 swede-fmt = { workspace = true }
+swede-scale = { workspace = true }
 clap = { workspace = true }
 serde_json = { workspace = true }

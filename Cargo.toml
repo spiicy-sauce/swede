@@ -2,11 +2,13 @@
 resolver = "2"
 members = [
     "tree-sitter-swede",
+    "crates/kitchen-units",
     "crates/swede-syntax",
     "crates/swede-semantics",
     "crates/swede-render",
     "crates/swede-schedule",
     "crates/swede-fmt",
+    "crates/swede-scale",
     "crates/swede-analysis",
     "crates/swede-lsp",
     "crates/swede-cli",
@@ -25,7 +27,9 @@ swede-semantics = { path = "crates/swede-semantics" }
 swede-render = { path = "crates/swede-render" }
 swede-schedule = { path = "crates/swede-schedule" }
 swede-fmt = { path = "crates/swede-fmt" }
+swede-scale = { path = "crates/swede-scale" }
 swede-analysis = { path = "crates/swede-analysis" }
+kitchen-units = { path = "crates/kitchen-units" }
 lsp-types = "0.94"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"

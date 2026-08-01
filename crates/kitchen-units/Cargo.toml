@@ -1,0 +1,10 @@
+[package]
+name = "kitchen-units"
+description = "Culinary unit parsing, conversion, and human-friendly rollup (tsp -> tbsp -> cup, g -> kg, ...). Standalone, dependency-free."
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+# Intentionally dependency-free and independent of the Swede workspace, so it is
+# reusable on its own.
+[dependencies]

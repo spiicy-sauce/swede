@@ -412,6 +412,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8f42a60cbdf9a97f5d2305f08a87dc4e09308d1276d28c869c684d7777685682"
 
 [[package]]
+name = "kitchen-units"
+version = "0.1.0"
+
+[[package]]
 name = "libc"
 version = "0.2.189"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -687,6 +691,7 @@ dependencies = [
  "serde_json",
  "swede-fmt",
  "swede-render",
+ "swede-scale",
  "swede-schedule",
  "swede-semantics",
  "swede-syntax",
@@ -713,6 +718,14 @@ name = "swede-render"
 version = "0.2.0"
 dependencies = [
  "swede-semantics",
+ "swede-syntax",
+]
+
+[[package]]
+name = "swede-scale"
+version = "0.2.0"
+dependencies = [
+ "kitchen-units",
  "swede-syntax",
 ]
 

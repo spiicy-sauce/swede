@@ -28,6 +28,19 @@ enum Cmd {
     },
     /// Schedule a recipe or menu onto a single-cook timeline.
     Schedule { file: PathBuf },
+    /// Scale a recipe by a factor or to a target serving count.
+    Scale {
+        file: PathBuf,
+        /// Multiply all amounts by this factor (e.g. 2 doubles the batch).
+        #[arg(long, conflicts_with = "to_serves")]
+        by: Option<f64>,
+        /// Scale to this many servings (uses the recipe's `serves` metadata).
+        #[arg(long)]
+        to_serves: Option<f64>,
+        /// Write the result back to the file instead of stdout.
+        #[arg(long)]
+        write: bool,
+    },
     /// Canonically format a file (align `=` columns).
     Fmt {
         file: PathBuf,
@@ -56,6 +69,7 @@ fn main() -> ExitCode {
         Cmd::Validate { file, json } => validate(file, json),
         Cmd::Render { file, format } => render(file, format),
         Cmd::Schedule { file } => schedule(file),
+        Cmd::Scale { file, by, to_serves, write } => scale(file, by, to_serves, write),
         Cmd::Fmt { file, write, check } => fmt(file, write, check),
         Cmd::Parse { file } => parse(file),
     }
@@ -141,6 +155,39 @@ fn schedule(file: PathBuf) -> ExitCode {
             ExitCode::FAILURE
         }
     }
+}
+
+fn scale(file: PathBuf, by: Option<f64>, to_serves: Option<f64>, write: bool) -> ExitCode {
+    let src = read(&file);
+    let factor = match (by, to_serves) {
+        (Some(f), _) => f,
+        (None, Some(target)) => match swede_scale::current_serves(&src) {
+            Some(current) if current > 0.0 => target / current,
+            _ => {
+                eprintln!("error: --to-serves needs a `serves` (or `yields`) number in the recipe");
+                return ExitCode::FAILURE;
+            }
+        },
+        (None, None) => {
+            eprintln!("error: specify --by <factor> or --to-serves <n>");
+            return ExitCode::FAILURE;
+        }
+    };
+    if factor <= 0.0 {
+        eprintln!("error: scale factor must be positive");
+        return ExitCode::FAILURE;
+    }
+    let scaled = swede_scale::scale_source(&src, factor);
+    if write {
+        if let Err(e) = std::fs::write(&file, &scaled) {
+            eprintln!("error: cannot write {}: {e}", file.display());
+            return ExitCode::FAILURE;
+        }
+        println!("scaled {} by {factor:.4}", file.display());
+    } else {
+        print!("{scaled}");
+    }
+    ExitCode::SUCCESS
 }
 
 fn fmt(file: PathBuf, write: bool, check: bool) -> ExitCode {

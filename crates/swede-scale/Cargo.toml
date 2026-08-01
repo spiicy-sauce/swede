@@ -1,0 +1,9 @@
+[package]
+name = "swede-scale"
+version = { workspace = true }
+edition = { workspace = true }
+license = { workspace = true }
+
+[dependencies]
+swede-syntax = { workspace = true }
+kitchen-units = { workspace = true }
