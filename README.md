@@ -16,7 +16,14 @@ crate-per-concern).
 | `swede-semantics` | Static validation (coded diagnostics), basis resolution, shared graph model |
 | `swede-render` | Table projections: Markdown flow table + monospace grid |
 | `swede-schedule` | Single-cook scheduler stab + timeline; menu scheduling |
+| `swede-analysis` | Editor analysis: position mapping, LSP diagnostics, symbols, go-to-definition |
+| `swede-lsp` | `swede-lsp` language server (tower-lsp) over `swede-analysis` |
 | `swede-cli` | `swede` binary: `validate` / `render` / `schedule` / `parse` |
+
+Editor integration lives in [`editors/zed`](editors/zed) (tree-sitter grammar,
+highlight/outline/bracket queries, and a Zed extension that launches
+`swede-lsp`). The grammar's own highlight queries are in
+[`tree-sitter-swede/queries`](tree-sitter-swede/queries).
 
 The generated `tree-sitter-swede/src/parser.c` is committed, so `cargo build`
 works without the tree-sitter CLI. Regenerate only if you edit `grammar.js`:

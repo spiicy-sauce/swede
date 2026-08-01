@@ -19,5 +19,9 @@ repository = "https://github.com/spiicy-sauce/swede"
 # standalone tree-sitter-swede repo and drop the `path` line.)
 [grammars.swede]
 repository = "https://github.com/spiicy-sauce/swede"
-commit = "cdf3c69df704196635b7d71202ce343214f28c9a"
+commit = "7dce800abf6cabb55a10a6e615d422f412fc9f50"
 path = "tree-sitter-swede"
+
+[language_servers.swede-lsp]
+name = "swede-lsp"
+languages = ["Swede"]

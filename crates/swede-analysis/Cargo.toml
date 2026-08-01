@@ -1,0 +1,10 @@
+[package]
+name = "swede-analysis"
+version = { workspace = true }
+edition = { workspace = true }
+license = { workspace = true }
+
+[dependencies]
+swede-syntax = { workspace = true }
+swede-semantics = { workspace = true }
+lsp-types = { workspace = true }

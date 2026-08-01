@@ -1,22 +1,32 @@
 # Swede — Zed extension
 
-Syntax highlighting, brackets, and an outline for `.swede` recipe files.
-
-This is a **config-only** extension (no Rust, no language server yet): grammar +
-queries. Live diagnostics would come from a future `swede-lsp`, mirroring the
-sibling `neep` extension; until then, run `swede validate` from the CLI.
+Syntax highlighting and a language server (`swede-lsp`) for `.swede` recipe
+files.
 
 ## What you get
 
 - **Highlighting** from the bundled tree-sitter queries
   (`languages/swede/highlights.scm`): verbs, node names, ingredients, equipment,
   bases, metadata, amounts, timers/temps, flags, temporal links, and strings.
-- **Bracket matching / autoclose** for `[...]` and `(...)`.
+- **Live diagnostics** — syntax errors plus the coded semantic errors and
+  warnings (`E001`–`E006`/`E008`, `W001`–`W004`) via `swede-lsp`.
 - **Document outline** of the recipe/menu name, its bases, and its named nodes.
+- **Go to definition** — jump from a node reference to the binding that
+  produces it.
+- **Bracket matching / autoclose** for `[...]` and `(...)`.
 
 ## Setup
 
-### 1. The grammar
+### Install the language server
+
+`swede-lsp` must be on your `PATH` (the extension locates it with
+`worktree.which("swede-lsp")`):
+
+```sh
+cargo install --path crates/swede-lsp
+```
+
+### The grammar
 
 Zed fetches and compiles tree-sitter grammars from git. The Swede grammar lives
 in the [`tree-sitter-swede/`](../../tree-sitter-swede) subdirectory of this repo,
@@ -42,7 +52,7 @@ path = "tree-sitter-swede"
 So this extension works, the repo must be pushed somewhere Zed can fetch it, and
 the pinned `commit` must exist on that remote.
 
-### 2. Install as a dev extension
+### Install as a dev extension
 
 In Zed: **Extensions → Install Dev Extension…** and choose this `editors/zed`
 directory. Open any `.swede` file.

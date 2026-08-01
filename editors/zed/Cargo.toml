@@ -1,0 +1,15 @@
+[package]
+name = "zed-swede"
+version = "0.1.0"
+edition = "2021"
+publish = false
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+zed_extension_api = "0.1.0"
+
+# Standalone: this crate targets wasm and is not part of the Rust workspace.
+[workspace]

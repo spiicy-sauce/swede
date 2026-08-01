@@ -90,4 +90,14 @@ in the README table.
    timeline is a real plan, not just dependency-earliest times.
 3. Grid renderer box-drawing pass (borders + drawn fork connectors) to match the
    §9 reference layout precisely.
-4. An LSP crate (`swede-lsp`) for editor diagnostics, mirroring `neep-lsp`.
+
+## Editor tooling (added after the initial build)
+
+- **Syntax highlighting** — `tree-sitter-swede/queries/highlights.scm`, wired
+  into `tree-sitter.json` and exposed as Rust consts.
+- **`swede-analysis` + `swede-lsp`** — a tower-lsp language server: live coded
+  diagnostics, document outline, and go-to-definition. Verified end-to-end over
+  the real LSP protocol.
+- **Zed extension** (`editors/zed`) — grammar + highlight/outline/bracket
+  queries + launches `swede-lsp`. Compiles to wasm; queries validated against
+  the grammar by `close-grammar-drift.sh`.
