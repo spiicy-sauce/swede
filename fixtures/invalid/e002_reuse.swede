@@ -1,0 +1,5 @@
+recipe e002_reuse
+a     = prep(flour[100g])
+b     = use(a)
+c     = use(a)
+plate = finish(b, c)

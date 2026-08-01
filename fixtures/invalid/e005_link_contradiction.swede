@@ -1,0 +1,4 @@
+recipe e005_contradiction
+a     = prep(flour[100g])
+b     = step(a) &by(a)
+plate = finish(b)

@@ -1,0 +1,4 @@
+recipe w004_constituents
+basis flour = 800g
+blend = mix(white_flour[60%* flour], whole_wheat_flour[50%* flour])
+plate = bake(blend)

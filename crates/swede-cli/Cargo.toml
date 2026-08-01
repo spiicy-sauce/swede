@@ -1,0 +1,17 @@
+[package]
+name = "swede-cli"
+version = { workspace = true }
+edition = { workspace = true }
+license = { workspace = true }
+
+[[bin]]
+name = "swede"
+path = "src/main.rs"
+
+[dependencies]
+swede-syntax = { workspace = true }
+swede-semantics = { workspace = true }
+swede-render = { workspace = true }
+swede-schedule = { workspace = true }
+clap = { workspace = true }
+serde_json = { workspace = true }

@@ -1,0 +1,3 @@
+recipe w003_split
+a[1T], b[2T] = divide(butter[2T])
+plate        = finish(a, b)

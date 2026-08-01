@@ -1,0 +1,13 @@
+[package]
+name = "swede-syntax"
+version = { workspace = true }
+edition = { workspace = true }
+license = { workspace = true }
+
+[dependencies]
+tree-sitter = { workspace = true }
+tree-sitter-swede = { workspace = true }
+serde = { workspace = true }
+
+[dev-dependencies]
+serde_json = { workspace = true }

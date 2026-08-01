@@ -1,0 +1,22 @@
+{
+  "grammars": [
+    {
+      "name": "swede",
+      "camelcase": "Swede",
+      "scope": "source.swede",
+      "path": ".",
+      "file-types": [
+        "swede"
+      ]
+    }
+  ],
+  "metadata": {
+    "version": "0.2.0",
+    "license": "MIT",
+    "description": "Tree-sitter grammar for the Swede recipe language"
+  },
+  "bindings": {
+    "c": true,
+    "rust": true
+  }
+}

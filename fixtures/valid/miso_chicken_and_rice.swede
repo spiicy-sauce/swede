@@ -1,0 +1,16 @@
+recipe miso_chicken_and_rice
+  :serves 3-4
+  :tags chicken, rice, one-pot, weeknight
+  :source https://smittenkitchen.com/2026/02/miso-chicken-and-rice/
+
+marinade  = mix(soy_sauce[2T], oyster_sauce[1T], shaoxing_wine[1T], miso[2T],
+                kosher_salt[.5t], sugar[1t], sesame_oil[.5t], white_pepper[~]) @3m
+strips    = cut(chicken_thighs[1lb]) @2m "1-inch strips"
+caps      = slice(shiitake_caps[8]) @1m "thin"
+coated    = mix(marinade, strips, caps) @5m
+whites, greens = slice(scallions[2])
+hot       = preheat(!oven {350F}) ~12m  &by(assembled)
+assembled = layer(rice[1c], broth[1c + 2T], ginger[.25in] "grated",
+                  coated, whites; !baking_dish) @5m
+baked     = bake(assembled; hot) ~35-45m [covered] "rice tender, chicken cooked through"
+plate     = top(baked, greens) @1m "eat right away"

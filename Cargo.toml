@@ -1,0 +1,26 @@
+[workspace]
+resolver = "2"
+members = [
+    "tree-sitter-swede",
+    "crates/swede-syntax",
+    "crates/swede-semantics",
+    "crates/swede-render",
+    "crates/swede-schedule",
+    "crates/swede-cli",
+]
+
+[workspace.package]
+version = "0.2.0"
+edition = "2021"
+license = "MIT"
+
+[workspace.dependencies]
+tree-sitter = "0.24"
+tree-sitter-swede = { path = "tree-sitter-swede" }
+swede-syntax = { path = "crates/swede-syntax" }
+swede-semantics = { path = "crates/swede-semantics" }
+swede-render = { path = "crates/swede-render" }
+swede-schedule = { path = "crates/swede-schedule" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+clap = { version = "4", features = ["derive"] }

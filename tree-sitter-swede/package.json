@@ -1,0 +1,13 @@
+{
+  "name": "tree-sitter-swede",
+  "version": "0.2.0",
+  "description": "Tree-sitter grammar for the Swede recipe language",
+  "main": "bindings/node",
+  "scripts": {
+    "generate": "tree-sitter generate",
+    "test": "tree-sitter test"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.24.0"
+  }
+}

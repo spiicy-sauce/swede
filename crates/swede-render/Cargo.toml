@@ -1,0 +1,9 @@
+[package]
+name = "swede-render"
+version = { workspace = true }
+edition = { workspace = true }
+license = { workspace = true }
+
+[dependencies]
+swede-syntax = { workspace = true }
+swede-semantics = { workspace = true }

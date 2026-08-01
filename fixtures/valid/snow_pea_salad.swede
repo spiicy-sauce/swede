@@ -1,0 +1,14 @@
+recipe snow_pea_salad
+  :yields 2 mains | 4 sides
+  :tags salad, vegan, quick, summer
+  :source Smitten Kitchen
+
+toasted    = toast(walnuts[50g]; !sheet_pan, !oven {350F}) ~6-10m "fragrant, darker"
+cooled     = cool(toasted) ~?
+soaked     = soak(snow_peas[225g]; !ice_water) ~10-20m
+ribbons    = slice(pat_dry(drain(soaked))) @4m "thin, lengthwise"
+base       = whisk(chop(cooled), olive_oil[60ml], lemon_juice[20ml],
+                   kosher_salt[~], black_pepper[~], chile_flakes[~]) @2m
+tossed     = toss(base, ribbons) @1m
+sliced_avo = slice(avocado[1]) @1m "thin"
+plate      = fold(tossed, sliced_avo) @1m  &lag(0) "eat right away"

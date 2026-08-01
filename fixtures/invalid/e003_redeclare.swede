@@ -1,0 +1,4 @@
+recipe e003_redeclare
+a     = mix(sugar[100g])
+b     = mix(sugar[50g])
+plate = finish(a, b)

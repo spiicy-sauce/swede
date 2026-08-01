@@ -1,0 +1,10 @@
+recipe fifty_fifty_loaf
+  :yields 1 loaf
+  :tags bread, sourdough
+
+basis flour = 800g
+
+blend    = mix(white_flour[50%* flour], whole_wheat_flour[50%* flour])
+poolish  = <+bread/poolish>[20%* flour]
+autolyse = mix(blend, water[72% flour]) ~1-2h
+dough    = knead(autolyse, kosher_salt[2% flour], poolish) "smooth, then slap and fold"

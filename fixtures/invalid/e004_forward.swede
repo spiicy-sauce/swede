@@ -1,0 +1,4 @@
+recipe e004_forward
+a     = use(later)
+later = prep(flour[100g])
+plate = finish(a, later)

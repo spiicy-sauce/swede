@@ -1,0 +1,4 @@
+recipe e001_unknown
+a     = prep(flour[100g])
+b     = mix(nonexistent)
+plate = finish(a, b)
